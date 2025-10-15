@@ -7,27 +7,33 @@ import Root from "./componentes/Layout/Root.jsx";
 import Home from "./componentes/Home.jsx";
 import Login from "./componentes/Layout/LogIn/Login.jsx";
 import Register from "./componentes/Layout/Registar/Register.jsx";
+import AuthProvider from "./AuthProvider/AuthProvider.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    children: [{
-     index:true,
-     Component:Home
-    },
-    {
-     path:"/Log In",
-     Component:Login
-    },{
-      path:"/Registsr",
-      Component:Register
-    }
-  ],
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/Log In",
+        Component: Login,
+      },
+      {
+        path: "/Registsr",
+        Component: Register,
+      },
+    ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>
 );

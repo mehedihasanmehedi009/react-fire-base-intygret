@@ -1,22 +1,40 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+
+import { use } from "react";
 import { Link } from "react-router";
-import { auth } from "../../../auth.init";
+import { AuthContext } from "../../../AuthContext/AuthContext";
+ 
 
 const Register = () => {
-  const hendel = (e) => {
-    e.preventDefault();
-    const email = e.target.email.value;
-    const password = e.target.password.value;
-    console.log(email, password);
+  const {createUser}= use(AuthContext)
+  // console.log(num)
+  const hendel = e =>{
+  e.preventDefault();
+  const email = e.target.email.value
+  const password = e.target.password.value
+   createUser(email,password)
+   .then(res=>{
+    console.log(res.user)
+   })
+   
+  .catch(error => {
+      console.log(error);
+    })
+  }
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  };
+  // const hendel = (e) => {
+  //   e.preventDefault();
+  //   const email = e.target.email.value;
+  //   const password = e.target.password.value;
+  //   console.log(email, password);
+
+  //   createUserWithEmailAndPassword(auth, email, password)
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
   return (
     <div>
       <div className="card bg-base-100 w-full max-w-sm mx-auto shrink-0 shadow-2xl">

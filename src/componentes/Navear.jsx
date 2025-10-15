@@ -1,7 +1,8 @@
 import { NavLink } from "react-router";
-import "./Navear.css"
-
+import "./Navear.css";
+ 
 const Navear = () => {
+ 
 
   const Links = (
     <>
