@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../auth.init";
 import { AuthContext } from "../AuthContext/AuthContext";
+import { useEffect } from "react";
 
 const AuthProvider = ({ children }) => {
   
@@ -12,6 +13,7 @@ const AuthProvider = ({ children }) => {
 const Singin = (email,password) =>{
     return createUserWithEmailAndPassword(auth,email,password)
 }
+useEffect(()=>{
 onAuthStateChanged(auth,(corruntuser)=>{
  if(corruntuser){
  console.log(corruntuser)
@@ -20,6 +22,7 @@ onAuthStateChanged(auth,(corruntuser)=>{
    console.log(corruntuser)
  }
 })
+},[])
 
  const Man = {
     createUser,
