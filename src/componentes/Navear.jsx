@@ -4,7 +4,7 @@ import { use } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
  
 const Navear = () => {
-    const {user} = use(AuthContext)
+    const {users} = use(AuthContext)
   const Links = (
     <>
       <li>
@@ -55,7 +55,7 @@ const Navear = () => {
         </div>
         <div className="navbar-end">
     {
-      user ?  <a className="btn">Sing OUt</a> : <Link to="/Log In">log
+      users ?  <a className="btn">Sing OUt</a> : <Link to="/Log In">log
       in</Link>
     }
         </div>
