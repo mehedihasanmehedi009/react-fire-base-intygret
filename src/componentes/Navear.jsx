@@ -2,9 +2,17 @@ import { Link, NavLink } from "react-router";
 import "./Navear.css";
 import { use } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
- 
+
 const Navear = () => {
-    const {users} = use(AuthContext)
+  const { users, sinOut } = use(AuthContext);
+  const hedels = () => {
+    sinOut()
+      .then(() => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const Links = (
     <>
       <li>
@@ -16,6 +24,19 @@ const Navear = () => {
       <li>
         <NavLink to="/Registsr">Registar</NavLink>
       </li>
+      <li>
+        <NavLink to="/Dasbord">Dasbord</NavLink>
+      </li>
+      {users && (
+        <>
+          <li>
+            <NavLink to="/odears">Show</NavLink>
+          </li>
+          <li>
+            <NavLink to="/show">Show</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
@@ -54,10 +75,13 @@ const Navear = () => {
           <ul className="menu menu-horizontal px-1">{Links}</ul>
         </div>
         <div className="navbar-end">
-    {
-      users ?  <a className="btn">Sing OUt</a> : <Link to="/Log In">log
-      in</Link>
-    }
+          {users ? (
+            <a onClick={hedels} className="btn">
+              Sing OUt
+            </a>
+          ) : (
+            <Link to="/Log In">log in</Link>
+          )}
         </div>
       </div>
     </div>
